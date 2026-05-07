@@ -1,0 +1,260 @@
+%==========================================================================
+%  Georgios Georgiou - CV
+%  LaTeX equivalent of FE-CV-Dec2025.pdf
+%
+%  Compile with:  pdflatex FE-CV-Dec2025.tex   (run twice for hyperlinks)
+%
+%  Layout: two columns via the `paracol` package.
+%    - Left  column = sidebar  (Personal Info, Stack, Extracurricular, Languages)
+%    - Right column = main     (Experience, Certification, Education)
+%
+%  Custom XML-tag style section headings (e.g. <Experience/>) are produced
+%  by the \xmlsection and \xmlsidesection commands defined below.
+%==========================================================================
+\documentclass[10pt,a4paper]{article}
+
+%------------------- Packages ---------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.4cm]{geometry}
+\usepackage{xcolor}
+\usepackage{paracol}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+% --- fontawesome5 is optional; falls back to no-op if not installed ---
+\IfFileExists{fontawesome5.sty}{%
+    \usepackage{fontawesome5}%
+}{%
+    % Stub the icon commands used below so the file still compiles.
+    \newcommand{\faInfoCircle}{}%
+    \newcommand{\faCode}{}%
+    \newcommand{\faBicycle}{}%
+    \newcommand{\faGlobe}{}%
+    \newcommand{\faBriefcase}{}%
+    \newcommand{\faCertificate}{}%
+    \newcommand{\faGraduationCap}{}%
+    \newcommand{\faTrophy}{}%
+}
+\usepackage{parskip}
+\usepackage{ragged2e}
+
+%------------------- Colors -----------------------------------------------
+\definecolor{accent}{HTML}{1F4E79}   % deep blue used for headings/name
+\definecolor{muted}{HTML}{555555}
+
+%------------------- Hyperlinks -------------------------------------------
+\hypersetup{
+    colorlinks = true,
+    urlcolor   = accent,
+    linkcolor  = accent
+}
+
+%------------------- Page setup -------------------------------------------
+\pagestyle{empty}
+\setlength{\columnsep}{1.0cm}
+\setlength{\parindent}{0pt}
+
+%------------------- Helper commands --------------------------------------
+% Main column section heading: <Name/>
+\newcommand{\xmlsection}[2][]{%
+    \par\vspace{6pt}%
+    {\Large\bfseries\color{accent}#1\,\textless#2/\textgreater}%
+    \par\vspace{2pt}%
+    {\color{accent}\rule{\linewidth}{0.6pt}}\par\vspace{4pt}%
+}
+
+% Sidebar section heading: <Name/>
+\newcommand{\xmlsidesection}[2][]{%
+    \par\vspace{6pt}%
+    {\large\bfseries\color{accent}#1\,\textless#2/\textgreater}%
+    \par\vspace{2pt}%
+    {\color{accent}\rule{\linewidth}{0.5pt}}\par\vspace{2pt}%
+}
+
+% Job entry: \jobentry{Title}{Date}{Company}{Role}
+\newcommand{\jobentry}[4]{%
+    \par\vspace{4pt}%
+    \noindent\textbf{#1}\hfill\textbf{#2}\\%
+    \textbf{#3}\\%
+    \textit{#4}\par\vspace{2pt}%
+}
+
+% Compact bullet list
+\newenvironment{cvitems}{%
+    \begin{itemize}[leftmargin=1.1em,topsep=2pt,itemsep=1pt,parsep=0pt]%
+}{%
+    \end{itemize}%
+}
+
+% "Tech:" line under a job
+\newcommand{\techstack}[1]{%
+    \vspace{2pt}\noindent\textit{Tech:} \textbf{#1}\par%
+}
+
+% Sidebar field (label + value)
+\newcommand{\sidefield}[2]{%
+    \noindent\textbf{#1} #2\par%
+}
+
+% Sidebar sub-heading (e.g. Databases, Front End)
+\newcommand{\sidesub}[1]{%
+    \par\vspace{4pt}\textbf{#1}\par%
+}
+
+%==========================================================================
+\begin{document}
+
+%------------------- Header -----------------------------------------------
+{\Huge\bfseries\color{accent}Georgios Georgiou}\\[2pt]
+{\large\color{muted}Fullstack JS Engineer}\par
+\vspace{6pt}
+\justifying
+An engineer with passion for coding and intuitive solutions. He has worked in small
+and large scale projects as a leader and developer ever trying to optimize for the
+user experience and performance of the application. Highly interested in working
+with new emerging and exciting technologies, trying out new patterns and exploring
+new domains.
+\vspace{6pt}
+{\color{accent}\rule{\linewidth}{0.8pt}}
+\vspace{4pt}
+
+%------------------- Two-column body --------------------------------------
+\columnratio{0.30}
+\begin{paracol}{2}
+
+%================== LEFT SIDEBAR ==========================================
+\raggedright
+
+\xmlsidesection[\faInfoCircle]{Personal Info}
+\sidefield{Address/}{Athens, 11523, Greece}
+\sidefield{Phone/}{0030 6943276600}
+\sidefield{E-mail/}{\href{mailto:georgiogeo27@gmail.com}{georgiogeo27@gmail.com}}
+\sidefield{Date of birth/}{9 Sep 1994}
+\sidefield{LinkedIn/}{\href{https://www.linkedin.com/in/geo-georgiou}{/in/geo-georgiou}}
+\sidefield{Github:}{\href{https://github.com/geogeorgiou}{/geogeorgiou}}
+\sidefield{Github Page:}{\href{https://geogeorgiou.github.io/agentic-cv/index.html}{/digital-cv}}
+\sidefield{Citizenship/}{Greek}
+
+\xmlsidesection[\faCode]{Stack Knowledge}
+
+\sidesub{Databases}
+Postgresql\\
+MySQL\\
+Oracle
+
+\sidesub{Front End}
+HTML5 / CSS3 / SASS / Tailwind\\
+React / NextJS\\
+JS / TS\\
+JSP
+
+\sidesub{Testing}
+Jest / Vitest\\
+Playwright
+
+\sidesub{Back End}
+Java Spring\\
+Maven/Gradle
+
+\sidesub{IDEs}
+Cursor\\
+VS Code\\
+Claude Code\\
+IntelliJ
+
+\sidesub{Creative Programs}
+Adobe Photoshop, Lightroom, Premiere
+
+% Push the remaining sidebar sections to page 2
+\newpage
+
+\xmlsidesection[\faGlobe]{Languages}
+Greek\\
+English -- B2\\
+German -- B1
+
+\xmlsidesection[\faBicycle]{Extracurricular}
+Gym, Travelling, Photography, Hiking, Dancing
+
+%================== RIGHT MAIN COLUMN =====================================
+\switchcolumn
+
+\xmlsection[\faBriefcase]{Experience}
+
+%---------- Agile Actors -----------------------------------------------
+\jobentry{Frontend Engineer}{May 2022 -- present}{Agile Actors}{Sportion -- Team Lead Fullstack Web Engineer}
+\begin{cvitems}
+    \item \textbf{Leading} developer team of 3 to migrate old monolithic app into an effort to split them into separate NextJS apps
+    \item Business \textbf{reporting} meetings with Senior Staff verbally but also generated through \textbf{AI} with \textbf{Atlassian MCP}
+    \item Reviewing and guiding team into maintainable and scalable code practices e.g. \textbf{feature based approach} for AI digestible format, coordinating \textbf{FE Discussions} between PO \& devs but also actively participating in coding work for product
+    \item Using \textbf{Claude CLI} and harnessing Frontier models with \textbf{SKILLS.md} to orchestrate \textbf{HITL} and \textbf{AFK} tickets to improve feature development velocity. Employed \textbf{feedback loops} prompting at the end of each step to ensure business integrity
+    \item Contacting other BE teams for \textbf{contract creation} and \textbf{coordination} for weekly PROD releases, upcoming feature support and discussions
+    \item Reduced \textbf{Docker} image size by \textbf{~80\%} by optimizing the build process and using a multi-stage build \textbf{~(2GB to 400MB)}
+    \item Accessing and addressing application \textbf{vulnerabilities} across backoffice on multiple ends \textbf{(React, Next, Node)}
+    \item Owning \textbf{rollout strategic plan} to fix the \textbf{RBAC} approach using structured \textbf{(CASL)} libraryprimitives
+    \item Participating in \textbf{SPIKE} activities and coding patterns to mitigate issues of codebase that are proven to be problematic to business, QA, Devs and also \textbf{documenting} outcome
+    \item Maintaining \textbf{pipelines} along with QA team to support \textbf{unit testing}, app building, \textbf{deploying} to separate environments and triggering extra related steps
+\end{cvitems}
+\techstack{App/Pages Router NextJS TS, React Query v5, React Hook Form, axios, Vitest, OKTA, Zod, Kibana, Tailwind CSS}
+
+\textit{Allwyn Lottery Solutions Client -- NextJS Engineer}
+\begin{cvitems}
+    \item Migrating old legacy application into latest \textbf{App Router Next.JS} app
+    \item Took ownership of \textbf{abstracting} and \textbf{modularizing} existing logic and functionality
+    \item Implemented \textbf{comprehensive unit} and \textbf{integration tests} using Vitest testing lib
+    \item Developed centralized, \textbf{re-usable error handling solution} for app consistency
+    \item Designed and integrated \textbf{RBAC solution} for both client and server layer
+    \item Collaborated with PO, TL for sprint planning, commitment and blocker identification
+\end{cvitems}
+\techstack{App Router NextJS TS, React Query v5, React Hook Form, axios, Vitest, Keycloak JS, Yup}
+
+\textit{Newcross Healthcare Client -- React FE Engineer}
+\begin{cvitems}
+    \item \textbf{Migrated and refactored} old JS into TS code while also in Prod
+    \item \textbf{Guided} a scrum team to build an \textbf{MVP React product} with TS tested on both \textbf{unit} and \textbf{E2E} level
+    \item Worked on a \textbf{Component Design System} to be re-used on wider company scale
+    \item Provided value by developing the new HR system working both on React and Java BE
+\end{cvitems}
+\techstack{React TS, React Query v5, React Hook Form, axios, Zustand, Playwright, Jest, Keycloak JS, Yup, Sentry, Mailosaur, MSW, Kafkajs, Styled Components, Faker, Vite}
+
+%---------- Netu --------------------------------------------------------
+\jobentry{Full Stack Developer}{March 2021 -- May 2022}{Netu}{}
+\begin{cvitems}
+    \item Worked as consultant for new eJustice product for Greek Police and migrated code from old legacy backend Java MVC code to \textbf{Java EE REST API} while also writing \textbf{React} frontend
+\end{cvitems}
+\techstack{React TS, Formik, React JSON Schema, Java EE, Oracle DB}
+
+%---------- Dataverse ---------------------------------------------------
+\jobentry{Software Engineer}{Feb 2020 -- March 2021}{Dataverse Ltd}{}
+\begin{cvitems}
+    \item Implemented fullstack solutions while in small agile dev teams at public sector projects for customers like EVEA and AADE
+\end{cvitems}
+\techstack{React, Java Spring Boot, Maria DB, Oracle DB}
+
+%---------- Certification -----------------------------------------------
+\xmlsection[\faCertificate]{Certification}
+
+\jobentry{Typescript Generics}{Dec 2024}{Matt Pocock}{}
+Completed a course on \textbf{Typescript Generics} covering advanced paradigms
+and approaches to navigate the JS ecosystem in a more robust way.
+credential: \href{https://res.cloudinary.com/total-typescript/image/upload/v1734378527/certificate/fbf94fc5-9891-4584-93eb-387b76f13171/typescript-generics.png}{/typescript-generics-certificate}
+
+\jobentry{Java | Spring by Code.Hub powered by Regeneration}{Dec 2019}{}{}
+Course of 5 weeks schedule with hands-on intense training on \textbf{Spring} with main goal
+to build a Web App using \textbf{HTML5}, \textbf{CSS}, \textbf{Javascript}, Java and MySQL.
+Intro to \textbf{Spring MVC} and intro \textbf{Spring Security}.
+(repo: \href{https://github.com/geogeorgiou/spring-boot-team1}{/spring-boot-team1})
+
+%---------- Education ---------------------------------------------------
+\xmlsection[\faGraduationCap]{Education}
+
+\jobentry{Integrated Master in Electrical and Computer Engineering}{Sep 2012 -- Oct 2018}{Technical University of Crete, Chania}{Department of Electrical and Computer Engineering}
+
+Diploma Thesis: Spectral photography (\textbf{Qt C++} implementations using \textbf{OpenMP})
+
+\end{paracol}
+
+\end{document}
