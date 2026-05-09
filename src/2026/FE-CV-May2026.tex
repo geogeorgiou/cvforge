@@ -94,6 +94,14 @@
     \vspace{2pt}\noindent\textit{Tech:} \textbf{#1}\par%
 }
 
+% Award entry for sidebar: \awardentry{Title}{Date}{Issuer}{Description}
+\newcommand{\awardentry}[4]{%
+    \par\vspace{4pt}%
+    \noindent\textbf{#1}\\%
+    {\small\textit{#3\ifx&#2&\else{} $\cdot$ #2\fi}}\par%
+    \ifx&#4&\else{\small #4}\par\fi%
+}
+
 % Sidebar field (label + value)
 \newcommand{\sidefield}[2]{%
     \noindent\textbf{#1} #2\par%
@@ -170,6 +178,12 @@ Adobe Photoshop, Lightroom, Premiere
 
 % Push the remaining sidebar sections to page 2
 \newpage
+
+\xmlsidesection[\faTrophy]{Awards}
+
+\awardentry{Coaching Ambassador}{Jun 2025}{Agile Actors}{Biannual coaching awards -- recognized for years of excellence and outstanding support to coachees.}
+
+\awardentry{Innovation \& Tech -- AAwesome Coaches Awards}{Dec 2023}{Agile Actors}{Biannual coaching awards -- recognized for excellence in innovation and technology.}
 
 \xmlsidesection[\faGlobe]{Languages}
 Greek\\
